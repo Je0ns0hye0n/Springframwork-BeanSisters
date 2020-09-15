@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.cartMapper">
+
+	<!-- 장바구니 확인 목록 -->
+	<select id="cartShow" parameterType="java.util.Map" resultType="cartDTO">
+       select * from Cart where state=#{state} and cart_id=#{cart_id} 
+    
+   </select>
+	
+	<!-- 장바구니에서 삭제 -->
+	<delete id="deleteCart" parameterType="int">
+		delete from cart where cart_num=#{cart_num}
+	</delete>
+
+	<!-- 장바구니>결제로 변경 -->
+	<update id="updateState" parameterType="String">
+		update cart set state='1' where state='0' and cart_id=#{cart_id}
+	</update>
+
+
+  <!--   장바구니 담기 -->
+	<insert id="insertCart" parameterType="cartDTO">
+		insert into cart (cart_id,cart_num,cart_price,c_pro_name,state,cart_count) values (#{cart_id}, seq_cart_num.nextval,#{cart_price},#{c_pro_name},'0',#{cart_count})
+	</insert>	
+ 
+ <!-- 제품 상세 가져오기 -->
+	<select id="detail_pro" parameterType="int" resultType="cartDTO">
+		select * from cart where cart_num=#{cart_num}
+	</select>
+	
+	
+	<!-- 결제하면 해당 id의 모든 장바구니 db삭제 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from cart where cart_id=#{cart_id} 
+	</delete>
+	
+	<!--  아이디별 총 금액 -->
+   <select id="cartShow_sum" parameterType="String" resultType="int">
+       select sum(cart_price) as sum from Cart where cart_id=#{cart_id}
+   </select>
+   
+   
+       <!-- 전체 목록 개수 구하기 -->
+   <select id="cart_getTotalA" resultType="int">
+      select count(*) as cnt from cart where cart_id=#{cart_id} 
+   </select>
+   
+</mapper>

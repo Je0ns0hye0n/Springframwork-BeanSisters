@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.subpayMapper">
+
+   <!-- 결제내용 입력 -->
+   <insert id="pay" parameterType="subPayDTO">
+      insert into Sub_Pay values(seq_sp_num.nextval,#{sp_mem_id},#{sp_coffee_name},#{sp_coffee_taste},#{sp_coffee_grinding},#{sp_dday},#{sp_period})
+   </insert>
+   
+   
+   <!-- 결제 내용 확인 view -->
+   <select id="payCheck" parameterType="String" resultType="subPayDTO">
+      select * from Sub_pay where sp_mem_id=#{sp_mem_id} order by sp_num
+   
+   </select>
+   
+
+</mapper>

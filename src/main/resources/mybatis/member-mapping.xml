@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.memberMapper">
+
+	       <!-- 로그인 -->
+	<select id="login" parameterType="java.util.Map" resultType="String">
+		select * from Member where mem_id=#{mem_id} and mem_pw1=#{mem_pw1}
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="mem_write" parameterType="memberDTO">
+		insert into member values (#{mem_id}, #{mem_pw1}, #{name}, #{phone}, #{age_group}, #{addr})
+	</insert>
+
+	<!-- 탈퇴 -->
+	<delete id="mem_Delete" parameterType="String">
+		delete member where mem_id=#{mem_id}
+	</delete>
+
+	<!--정보 수정전에 수정페이지에 값 적기 위해서 값 읽어오기. -->
+	<select id="getMember" parameterType="String" resultType="memberDTO">
+		select * from member where mem_id=#{mem_id}
+	</select>
+
+	<!--  회원 정보 수정 -->
+	<update id="modify" parameterType="memberDTO">
+		update member set name=#{name}, mem_pw1=#{mem_pw1}, phone=#{phone}, addr=#{addr} where mem_id=#{mem_id}
+	</update>
+
+</mapper>

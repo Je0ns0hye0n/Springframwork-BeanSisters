@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+	
+	<resources mapping="/**" location="/resources/" />
+	
+	<!-- bean 객체 annotation 설정 -->
+	<context:component-scan
+		base-package="com.project.beansisters" />
+
+	<!-- script 폴더 등록 -->
+	<resources location="/script/" mapping="/script/**" />
+
+	<!-- bean 객체 어노테이션 설정 : 프로젝트를 시작할때 처음으로 스캔하는 컨트롤러를 설정exam16 
+		<context:component-scan base-package="board.controller" />  -->
+
+	<!-- bean 객체 어노테이션 설정 : 상위 촐더로 어노테이션 확장 -->
+	<context:component-scan base-package="board" />
+	<context:component-scan base-package="member" />
+	<context:component-scan base-package="cart" />
+	<context:component-scan base-package="subpay" />
+</beans:beans>

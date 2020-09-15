@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/main/java/board/controller/BoardController.java=UTF-8
+encoding//src/main/java/cart/bean/CartDTO.java=UTF-8
+encoding//src/main/java/cart/controller/CartController.java=UTF-8
+encoding//src/main/java/cart/controller/CartService.java=UTF-8
+encoding//src/main/java/cart/dao/CartDAO.java=UTF-8
+encoding//src/main/java/member/controller/MemberController.java=UTF-8
+encoding//src/main/java/subpay/controller/SubPayController.java=UTF-8
+encoding//src/main/webapp/main_subscription/index.jsp=UTF-8
